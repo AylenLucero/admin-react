@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './index.css';
+import {task} from '../../../utils/api/task';
 import { CgSandClock, CgCheckO, CgCloseO } from "react-icons/cg";
 
-const Task = ({data:{title,assigned,date,info}}) => {
-    const [state ,setState] = useState("pendiente");
-    const close = () => {
-
+const Task = ({data:{title,assigned,date,info,id, status}}) => {
+    const [state ,setState] = useState(status);
+    const updateStatus = (status) =>{
+       // setState(status);
+        task.patch(id,{status})
     }
     return (
         <div className={`card col-3 ms-3 ${state}`} >
@@ -14,9 +16,12 @@ const Task = ({data:{title,assigned,date,info}}) => {
                 <p className="card-text">{assigned}</p>
                 <p className="card-text">{date}</p>
                 <p className="card-text">{info}</p>
-                < CgSandClock onClick={()=>setState("pendiente")} />
-                <CgCheckO onClick={()=>setState("realizada")} />
-                <CgCloseO onClick={()=>setState("cancelada")} />
+                <CgSandClock onClick={()=>updateStatus("pendiente")} />
+                <CgCheckO onClick={()=>updateStatus("realizada")} />
+                <CgCloseO onClick={()=>updateStatus("cancelada")} />
+                <span className='ms-5'>
+                    {state}
+                </span>
             </div>
         </div>
     )

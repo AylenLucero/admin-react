@@ -19,6 +19,13 @@ const get = async () => {
     return objectToArray(data.data);     
 }
 
+const patch = async (id, task) => {
+    await api({
+        method:'PATCH',
+        url:'/tasks/'+ id +'.json',
+        data: task
+    })
+}
 
   
-export const task = { post, get };
+export const task = { post, get, patch };

@@ -11,7 +11,7 @@ const AddTask = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await task.post({title, date, assigned, info});  
+        await task.post({title, date, assigned, info,status:"pendiente"});  
         exito()   
         setTitle('');
         setDate('');
