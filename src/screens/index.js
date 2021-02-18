@@ -1,2 +1,3 @@
-export {AddTask} from './AddTask';
-export {Tasks} from './Tasks';
+
+export {Public} from './Public';
+export {Private} from './Private';

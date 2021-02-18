@@ -1,10 +1,10 @@
 import React,{useState, useEffect} from 'react';
-import {Layout} from '../../components';
+import {Layout} from '../../../../components';
 import { Link } from "react-router-dom";
-import {task} from '../../utils';
+import {task} from '../../../../utils';
 import {Task} from './components/Task';
 
-const Tasks = () => {
+const List = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(async() => {
@@ -14,7 +14,6 @@ const Tasks = () => {
     console.log(tasks);
     return(
         <>
-            <Layout >
                 <div className='row'>
                 <h2 className="col-6">Agrgar tarea</h2>
                 
@@ -25,9 +24,8 @@ const Tasks = () => {
                     tasks.map(task=><Task data={task} /> )                    
                 }
                 </div>
-            </Layout>
         </>
     );
 }
 
-export {Tasks};
+export {List};

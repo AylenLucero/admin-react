@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './index.css';
-import {task} from '../../../utils/api/task';
+import {task} from '../../../../../utils/api/task';
 import { CgSandClock, CgCheckO, CgCloseO } from "react-icons/cg";
 
 const Task = ({data:{title,assigned,date,info,id, status}}) => {
     const [state ,setState] = useState(status);
     const updateStatus = (status) =>{
-       // setState(status);
+        setState(status);
         task.patch(id,{status})
     }
     return (

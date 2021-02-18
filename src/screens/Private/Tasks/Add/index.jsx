@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {Layout, Main} from '../../components';
-import { task } from "../../utils";
+import {Layout, Main} from '../../../../components';
+import { task } from "../../../../utils";
 import {Link} from 'react-router-dom';
 
-const AddTask = () => {
+const Add = () => {
     const [title, setTitle] = useState(' ');
     const [date, setDate] = useState(' ');
     const [assigned, setAssigned] = useState(' ');
@@ -24,8 +24,6 @@ const AddTask = () => {
 
     return(
         <>
-            <Layout >
-                <Main>
                 <form onSubmit={handleSubmit}>   
                 <div className="mb-3">                
                 <label for="title" className="form-label">Title Task</label>
@@ -46,10 +44,8 @@ const AddTask = () => {
                 
                 </div>
                 </form>
-                </Main>
-            </Layout>
         </>
     );
 }
 
-export {AddTask};
+export {Add};
