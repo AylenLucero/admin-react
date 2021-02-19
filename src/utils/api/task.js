@@ -11,6 +11,14 @@ const post = async (task) => {
 }
 
 
+const getEdit = async (id) => {    
+    const data =  await api({
+          method: 'get',
+          url: '/tasks/'+ id +'.json'     
+    }); 
+    return data.data;     
+}
+
 const get = async () => {    
     const data =  await api({
           method: 'get',
@@ -28,4 +36,4 @@ const patch = async (id, task) => {
 }
 
   
-export const task = { post, get, patch };
+export const task = { post, get, patch, getEdit };

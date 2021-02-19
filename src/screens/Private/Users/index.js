@@ -1,9 +1,6 @@
-import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import { Add } from './Add';
-import {List} from './List';
 
-const Tasks = () => {
+const Users = () => {
     return (
         <Switch>
             <Route path="/tasks/add" component={Add} />
@@ -13,4 +10,4 @@ const Tasks = () => {
     )
 }
 
-export {Tasks};
+export {Users};

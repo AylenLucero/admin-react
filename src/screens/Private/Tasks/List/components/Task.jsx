@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './index.css';
 import {task} from '../../../../../utils/api/task';
-import { CgSandClock, CgCheckO, CgCloseO } from "react-icons/cg";
+import {Link} from 'react-router-dom';
+import { CgSandClock, CgCheckO, CgCloseO, CgPen } from "react-icons/cg";
 
 const Task = ({data:{title,assigned,date,info,id, status}}) => {
     const [state ,setState] = useState(status);
     const updateStatus = (status) =>{
         setState(status);
         task.patch(id,{status})
+    }
+    const editTask = () => {
+
     }
     return (
         <div className={`card col-3 ms-3 ${state}`} >
@@ -22,6 +26,9 @@ const Task = ({data:{title,assigned,date,info,id, status}}) => {
                 <span className='ms-5'>
                     {state}
                 </span>
+                <Link to={`/tasks/edit/${id}`}>
+                    <CgPen />
+                </Link> 
             </div>
         </div>
     )
