@@ -10,9 +10,6 @@ const Task = ({data:{title,assigned,date,info,id, status}}) => {
         setState(status);
         task.patch(id,{status})
     }
-    const editTask = () => {
-
-    }
     return (
         <div className={`card col-3 ms-3 ${state}`} >
             <div className="card-body">

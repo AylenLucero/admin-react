@@ -1,44 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import {Layout, Main} from '../../../../components';
+import { useHistory } from 'react-router-dom';
 import { task } from "../../../../utils";
-import {useRouteMatch} from 'react-router-dom';
 
 const Add = ({match}) => {
     const [title, setTitle] = useState(' ');
     const [date, setDate] = useState(' ');
     const [assigned, setAssigned] = useState(' ');
     const [info, setInfo] = useState(' ');
-    const [textBtn, setTextBtn] = useState('Add')
+    const [textBtn, setTextBtn] = useState('Add');
+    const [isLoading, setIsLoading] = useState(false);
+    const [msj, setMsj] = useState(null);
+    const history = useHistory();
 
 
     const id = match.params.id;
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        await task.post({title, date, assigned, info,status:"pendiente"});  
+    const createTask = async() =>{
+        await task.post({title, date, assigned, info,status:"pendiente"}); 
         exito()   
         setTitle('');
         setDate('');
         setAssigned('');
         setInfo(''); 
     }
+
+    const updateTask = async () =>{
+        setIsLoading(true);
+        await task.patch(id, {title, date, assigned, info} )
+        setIsLoading(false);
+        setMsj("Se Actualizo de forma exitosa");
+        history.push('/tasks/list');
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if(id){
+         await updateTask();
+        }else{
+         await createTask();
+        }
+    }
     const exito = () => {   
         alert('Tu tarea se cargo exitosamente');
     }
     
+
     useEffect(() => {
-        task.getEdit(id)
+        if (id)  {
+        task.getId(id)
         .then(response => {
-            setTitle(response.title);
-            setDate(response.date);
-            setAssigned(response.assigned);
-            setInfo(response.info)
+           
+                setTitle(response.title);
+                setDate(response.date);
+                setAssigned(response.assigned);
+                setInfo(response.info)
+                setTextBtn('Edit');
+           
         })
+    }
     }, [])        
     
     return(
         <>
-            <form onSubmit={handleSubmit}>   
+            <form onSubmit={handleSubmit}>  
+                {isLoading && "Cargando .........."}
+                {msj} 
                 <div className="mb-3">                
                 <label for="title" className="form-label">Title Task</label>
                 <input type="text" name="title" className="form-control" id="title" placeholder="Title Task" value={title} onChange={(event) => setTitle(event.target.value)} />

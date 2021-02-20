@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Layout, Main } from '../../components';
 import { Tasks } from './Tasks';
+import {Users} from './Users';
 
 const Private = () => {
     return (
@@ -10,6 +11,7 @@ const Private = () => {
                 <Main>
                     <Switch>
                         <Route path="/tasks" component={Tasks} />
+                        <Route path="/users" component={Users} />
                     </Switch>
                 </Main>
             </Layout>

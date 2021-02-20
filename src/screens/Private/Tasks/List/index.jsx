@@ -17,7 +17,7 @@ const List = () => {
                 <div className='row'>
                 <h2 className="col-6">Agrgar tarea</h2>
                 
-                <Link to='/add-task' ><button type="button" className="btn btn-primary col-2">Left</button></Link>
+                <Link to='/tasks/add' ><button type="button" className="btn btn-primary col-2">Left</button></Link>
                 </div>
                 <div className='row'>
                 {                    

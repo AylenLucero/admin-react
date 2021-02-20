@@ -1,20 +1,19 @@
 import {api} from './api';
 import {objectToArray} from '../../helpers';
 
-const post = async (task) => {    
+const post = async (user) => {    
   await api({
         method: 'post',
-        url: '/tasks.json',
-        data: task        
+        url: '/users.json',
+        data: user        
     });
     
 }
 
-
 const getId = async (id) => {    
     const data =  await api({
           method: 'get',
-          url: '/tasks/'+ id +'.json'     
+          url: '/users/'+ id +'.json'     
     }); 
     return data.data;     
 }
@@ -22,18 +21,24 @@ const getId = async (id) => {
 const get = async () => {    
     const data =  await api({
           method: 'get',
-          url: '/tasks.json'        
+          url: '/users.json'        
     }); 
     return objectToArray(data.data);     
 }
 
-const patch = async (id, task) => {
+const patch = async (id, user) => {
     await api({
         method:'PATCH',
-        url:'/tasks/'+ id +'.json',
-        data: task
+        url:'/users/'+ id +'.json',
+        data: user
     })
 }
 
+const deleteUser = async (id) => {
+    await api({
+        method:'DELETE',
+        url:'/users/' + id + '.json'
+    })
+}
   
-export const task = { post, get, patch, getId };
+export const user = { post, get, patch, getId, deleteUser };
